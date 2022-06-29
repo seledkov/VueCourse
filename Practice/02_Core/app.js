@@ -5,7 +5,6 @@ const app = Vue.createApp({
       age: 20,
       imgUrl:
         'https://givotniymir.ru/wp-content/uploads/2016/07/shmel-nasekomoe-obraz-zhizni-i-sreda-obitaniya-shmelya-1.jpg',
-      inputValue: 'placeholder',
     };
   },
   methods: {

@@ -24,5 +24,19 @@
       <!-- better not use - not save -->
       <!-- <p v-html="htmlLink">12</p> -->
     </section>
+    <section id="events">
+      <h2>Events in action</h2>
+      <button v-on:click="add">Add</button>
+      <button @click.prevent.right="reduce(3)">Reduce 3</button>
+      <p>Result: {{counter}}</p>
+      <input type="text" v-on:input="setName" />
+      <input type="text" v-on:input="setName($event)" />
+      <input type="text" v-on:input="setName($event, 'max')" />
+      <p>Result: {{name}}</p>
+      <form v-on:submit.prevent="console">
+        <input type="text" />
+        <button>sign up</button>
+      </form>
+    </section>
   </body>
 </html>

@@ -22,9 +22,23 @@ app.mount('#user-goal');
 Vue.createApp({
   data() {
     return {
-      counter: 0,
+      counter: 10,
       name: '',
+      title: '',
     };
+  },
+  computed: {
+    fullName() {
+      // work as returned data but foo
+      return this.name + ' ' + 'miller';
+    },
+  },
+  watch: {
+    name(newValue, oldValue) {
+      // see to key into data > name(gdata.name)
+      console.log('hi i am watch: name', newValue, oldValue);
+      this.title = newValue + ' fon miller';
+    },
   },
   methods: {
     console(event) {
@@ -38,6 +52,12 @@ Vue.createApp({
     },
     setName(event) {
       this.name = event.target.value;
+    },
+    // outputFullName() {
+    //   return this.name + ' ' + 'miller';
+    // },
+    resetName() {
+      this.name = '';
     },
   },
 }).mount('#events');

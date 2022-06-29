@@ -18,3 +18,27 @@ const app = Vue.createApp({
 });
 
 app.mount('#assignment');
+
+Vue.createApp({
+  data() {
+    return {
+      firstText: 'first text message',
+      secondText: 'second text message',
+      thirdText: 'third text message',
+    };
+  },
+  methods: {
+    alert() {
+      console.log('hi');
+    },
+    alertMsg() {
+      alert(this.firstText);
+    },
+    setSecondMsg(event) {
+      this.secondText = event.target.value;
+    },
+    setThirdMsg(event) {
+      this.thirdText = event.target.value;
+    },
+  },
+}).mount('#events');

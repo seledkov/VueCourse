@@ -28,11 +28,16 @@
       <h2>Events in action</h2>
       <button v-on:click="add">Add</button>
       <button @click.prevent.right="reduce(3)">Reduce 3</button>
+      <p v-once>Starting counter: {{counter}}</p>
       <p>Result: {{counter}}</p>
-      <input type="text" v-on:input="setName" />
-      <input type="text" v-on:input="setName($event)" />
-      <input type="text" v-on:input="setName($event, 'max')" />
-      <p>Result: {{name}}</p>
+      <input type="text" v-model="name" />
+      <input type="text" v-bind:value="name" v-on:input="setName($event)" />
+      <input type="text" v-on:keydown.enter="setName" />
+      <input type="text" v-on:input="setName($event, subName)" />
+      <p>Input Name: {{name}}{{title}}</p>
+      <p>Input Name: {{ fullName}}</p>
+      <!-- <p>Full Name: {{outputFullName()}}</p> // bad practice - every changer - recall foo -->
+      <button v-on:click="resetName">Reset name</button>
       <form v-on:submit.prevent="console">
         <input type="text" />
         <button>sign up</button>

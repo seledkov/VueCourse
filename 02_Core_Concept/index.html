@@ -24,24 +24,38 @@
       <!-- better not use - not save -->
       <!-- <p v-html="htmlLink">12</p> -->
     </section>
+
     <section id="events">
       <h2>Events in action</h2>
       <button v-on:click="add">Add</button>
-      <button @click.prevent.right="reduce(3)">Reduce 3</button>
+      <button @click.prevent.right="reduce(3)">Reduce 3 right click</button>
       <p v-once>Starting counter: {{counter}}</p>
       <p>Result: {{counter}}</p>
-      <input type="text" v-model="name" />
-      <input type="text" v-bind:value="name" v-on:input="setName($event)" />
-      <input type="text" v-on:keydown.enter="setName" />
-      <input type="text" v-on:input="setName($event, subName)" />
-      <p>Input Name: {{name}}{{title}}</p>
-      <p>Input Name: {{ fullName}}</p>
+      <input type="text" title="name" v-model="name" />
+      <!-- v-model  === v-bind:value see to name and v-on:input set data+name -->
+      <input type="text" title="lastName" v-model="lastName" />
+      <!--  v-bind input.value see to data+name -->
+      <input type="text" title="setName(e)" v-bind:value="name" v-on:input="setName($event)" />
+      <input type="text" title="entering setName" v-on:keydown.enter="setName" />
+      <input type="text" title="setName(e, subName)" v-on:input="setName($event, subName)" />
+      <p>Setting Name: {{name}}{{title}}</p>
+      <p>Computed Name Name: {{ fullName}}</p>
       <!-- <p>Full Name: {{outputFullName()}}</p> // bad practice - every changer - recall foo -->
       <button v-on:click="resetName">Reset name</button>
       <form v-on:submit.prevent="console">
         <input type="text" />
         <button>sign up</button>
       </form>
+    </section>
+
+    <section id="event-binding">
+      <button @click="add(5)">Add 5</button>
+      <button @click="add(1)">Add 1</button>
+      <!-- 1) Connect the buttons and calculate a value (a number) -->
+      <!-- Show "Not there yet" until you reach a result of exactly 37 -->
+      <!-- Show "Too much!" if the result is greater than 37 -->
+      <p>Result: {{ resultMsg }}</p>
+      <!-- 2) Watch for changes in "result" and reset the value to 0 after 5 seconds -->
     </section>
   </body>
 </html>

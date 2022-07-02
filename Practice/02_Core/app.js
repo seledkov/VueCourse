@@ -76,23 +76,23 @@ Vue.createApp({
   data() {
     return {
       userEnteredClass: '',
-      visibleClass: 'visible',
+      isParagraphVisible: true,
       userEnteredBackgroundColor: '',
     };
   },
+  computed: {
+    paragraphClasses() {
+      return {
+        user1: this.userEnteredClass === 'user1',
+        user2: this.userEnteredClass === 'user2',
+        visible: this.isParagraphVisible,
+        hidden: !this.isParagraphVisible,
+      };
+    },
+  },
   methods: {
-    addUserStyle(event) {
-      this.userEnteredClass = event.target.value;
-    },
-    addBackgroundColor(event) {
-      this.userEnteredBackgroundColor = event.target.value;
-    },
     toogleVisible() {
-      if (this.visibleClass === 'visible') {
-        this.visibleClass = 'hidden';
-      } else {
-        this.visibleClass = 'visible';
-      }
+      this.isParagraphVisible = !this.isParagraphVisible;
     },
   },
 }).mount('#classes-styling');

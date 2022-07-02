@@ -42,5 +42,28 @@
       <input type="text" v-on:keydown.enter="setThirdMsg" />
       <p>OUTPUT {{ thirdText}}</p>
     </section>
+    <section id="event-binding">
+      <button @click="add(5)">Add 5</button>
+      <button @click="add(1)">Add 1</button>
+      <!-- 1) Connect the buttons and calculate a value (a number) -->
+      <!-- Show "Not there yet" until you reach a result of exactly 37 -->
+      <!-- Show "Too much!" if the result is greater than 37 -->
+      <p>Result: {{ resultMsg }}</p>
+      <!-- 2) Watch for changes in "result" and reset the value to 0 after 5 seconds -->
+    </section>
+    <section id="classes-styling">
+      <!-- 1) Fetch the user input and use it as a CSS class -->
+      <!-- The entered class should be added to the below paragraph -->
+      <input type="text" @input="addUserStyle" />
+      <!-- (available classes: "user1", "user2") -->
+      <p :class="[userEnteredClass, visibleClass ]">Style me!</p>
+      <button @click="toogleVisible">Toggle Paragraph</button>
+      <!-- 2) Use the "visible" and "hidden" classes to show/ hide the above paragraph -->
+      <!-- Clicking the button should toggle between the two options -->
+
+      <!-- 3) Add dynamic inline styling to the below paragraph and let the user enter a background-color -->
+      <input type="text" @input="addBackgroundColor" />
+      <p :style="{backgroundColor: userEnteredBackgroundColor}">Style me inline!</p>
+    </section>
   </body>
 </html>

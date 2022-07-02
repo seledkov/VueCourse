@@ -62,8 +62,6 @@ button:active {
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
 }
 
-
-
 #assignment {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 3rem;
@@ -116,3 +114,25 @@ button:active {
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
 }
 
+.user1 {
+  background-color: blue;
+  color: white;
+}
+
+.user2 {
+  background-color: purple;
+  color: white;
+}
+
+.user3 {
+  background-color: #1b995e;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}

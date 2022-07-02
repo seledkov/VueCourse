@@ -72,30 +72,26 @@ Vue.createApp({
 
 Vue.createApp({
   data() {
-    return { counter: 0, winValue: 21 };
-  },
-  watch: {
-    counter() {
-      setTimeout(() => {
-        this.counter = 0;
-      }, 4000);
-    },
+    return {
+      boxASelected: false,
+      boxBSelected: false,
+      boxCSelected: false,
+    };
   },
   computed: {
-    resultMsg() {
-      if (this.counter < this.winValue) {
-        return this.counter + ' low';
-      } else if (this.counter > this.winValue) {
-        return this.counter + ' over';
-      } else {
-        return 'you won';
-      }
+    boxAClasses() {
+      return { active: this.boxASelected };
     },
   },
   methods: {
-    add(num) {
-      console.log(this.counter);
-      this.counter += num;
+    selectBox(box) {
+      if (box === 'a') {
+        this.boxASelected = !this.boxASelected;
+      } else if (box === 'b') {
+        this.boxBSelected = !this.boxBSelected;
+      } else if (box === 'c') {
+        this.boxCSelected = !this.boxCSelected;
+      }
     },
   },
-}).mount('#event-binding');
+}).mount('#styling');

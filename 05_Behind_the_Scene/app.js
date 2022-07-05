@@ -10,8 +10,32 @@ const app = Vue.createApp({
       this.currentUserInput = event.target.value;
     },
     setText() {
-      this.message = this.$refs.userText;
+      this.message = this.$refs.userText.value;
     },
+  },
+  beforeCreate() {
+    console.log('before create()');
+  },
+  created() {
+    console.log('created()');
+  },
+  beforeMount() {
+    console.log('before mount()');
+  },
+  mounted() {
+    console.log('mounted()');
+  },
+  beforeUpdate() {
+    console.log('before update()');
+  },
+  updated() {
+    console.log('updated()');
+  },
+  beforeUnmount() {
+    console.log('before unmount()');
+  },
+  unmounted() {
+    console.log('unmounted()');
   },
 });
 
@@ -26,27 +50,36 @@ const appTemplate = Vue.createApp({
       message: 'template area',
     };
   },
-}).mount('#template');
-
-const data = {
-  message: 'hello',
-  longMessage: 'hello proxy',
-};
-
-const handler = {
-  set(target, key, value) {
-    if (key === 'message') {
-      target.longMessage = value + ' proxy';
-    }
-    target.key = value;
-    console.log(target);
-    console.log(key);
-    console.log(value);
+  beforeUnmount() {
+    console.log('template before unmount()');
   },
-};
+  unmounted() {
+    console.log('template unmounted()');
+  },
+});
+appTemplate.mount('#template');
 
-const proxy = new Proxy(data, handler);
+appTemplate.unmount();
 
-proxy.message = 'hello now';
+// const data = {
+//   message: 'hello',
+//   longMessage: 'hello proxy',
+// };
 
-console.log(proxy);
+// const handler = {
+//   set(target, key, value) {
+//     if (key === 'message') {
+//       target.longMessage = value + ' proxy';
+//     }
+//     target.key = value;
+//     console.log(target);
+//     console.log(key);
+//     console.log(value);
+//   },
+// };
+
+// const proxy = new Proxy(data, handler);
+
+// proxy.message = 'hello now';
+
+// console.log(proxy);

@@ -3,23 +3,25 @@
     <header>
       <h1>My Friends</h1>
     </header>
+    <NewFriend @get-friend-data="addFriend" />
     <ul>
-      <friend-contact
+      <FriendContact
         v-for="item in friends"
         :id="item.id"
         :friend="item"
         :isVisibleProps="item.isVisibleDetail"
         :key="item.id"
         @random-name="toggleFavorite"
-      ></friend-contact>
+      />
     </ul>
   </section>
 </template>
 
 <script>
 import FriendContact from './components/FriendContact.vue';
+import NewFriend from './components/NewFriend.vue';
 export default {
-  components: { FriendContact },
+  components: { FriendContact, NewFriend },
   data() {
     return {
       friends: [
@@ -47,6 +49,17 @@ export default {
       const foundFriend = this.friends.find((item) => item.id === friendId);
       foundFriend.isFavorite = !foundFriend.isFavorite;
       alert(friendId);
+    },
+    addFriend(enteredFrinedData) {
+      this.friends.push({
+        name: enteredFrinedData.enteredName,
+        phone: enteredFrinedData.enteredPhone,
+        email: enteredFrinedData.enteredMail,
+        id: enteredFrinedData.enteredName,
+        isFavorite: false,
+        isVisibleDetail: false,
+      });
+      console.log('add friend', enteredFrinedData);
     },
   },
 };
@@ -109,7 +122,9 @@ header {
   padding: 0.05rem 1rem;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
 }
-
+#app button:disabled {
+  opacity: 0.4;
+}
 #app button:hover,
 #app button:active {
   background-color: #ec3169;

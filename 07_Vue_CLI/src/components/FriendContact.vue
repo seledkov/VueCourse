@@ -32,6 +32,17 @@ export default {
       },
     },
   },
+  emits: ['random-name'],
+  // emits: {
+  //   'random-name': function (id) {
+  //     if (id) {
+  //       return true;
+  //     } else {
+  //       console.log('emit random-name does not have id argument');
+  //       return false;
+  //     }
+  //   },
+  // },
   data() {
     return {
       isVisibleDetail: this.isVisibleProps,

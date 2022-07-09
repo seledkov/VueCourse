@@ -4,10 +4,14 @@
       <h1>My Friends</h1>
     </header>
     <ul>
-      <friend-contact></friend-contact>
-      <!-- <li v-for="friend of friends" :key="friend.id">
-        <div>{{ friend.name }}</div>
-      </li> -->
+      <friend-contact
+        v-for="item in friends"
+        :id="item.id"
+        :friend="item"
+        :isVisibleProps="item.isVisibleDetail"
+        :key="item.id"
+        @random-name="toggleFavorite"
+      ></friend-contact>
     </ul>
   </section>
 </template>
@@ -24,15 +28,26 @@ export default {
           name: 'max',
           phone: '0123',
           email: 'max@localhost.com',
+          isFavorite: true,
+          isVisibleDetail: false,
         },
         {
           id: '124',
           name: 'manu',
           phone: '3210',
           email: 'manu@localhost.com',
+          isFavorite: false,
+          isVisibleDetail: true,
         },
       ],
     };
+  },
+  methods: {
+    toggleFavorite(friendId) {
+      const foundFriend = this.friends.find((item) => item.id === friendId);
+      foundFriend.isFavorite = !foundFriend.isFavorite;
+      alert(friendId);
+    },
   },
 };
 </script>

@@ -1,30 +1,48 @@
 <template>
   <li>
-    <h2>{{ friend.name }}</h2>
-    <button @click="toggleVisibleDetail">show/hide detail</button>
+    <h2>{{ friend.name }} {{ friend.isFavorite ? '&#9733;' : '' }}</h2>
+    <button @click="toggleVisibleDetail">show/hide detail {{ id }}</button>
+    <button @click="toggleFavorite">Add Favorite</button>
     <ul v-if="isVisibleDetail">
       <li><strong>Phone:</strong>{{ friend.phone }}</li>
-      <li><strong>Email:</strong>{{ friend.mail }}</li>
+      <li><strong>Email:</strong>{{ friend.email }}</li>
     </ul>
   </li>
 </template>
 
 <script>
 export default {
+  // props: { friend: Object },
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    friend: {
+      type: Object,
+      required: true,
+      // default: defaultPerson
+    },
+    isVisibleProps: {
+      type: Boolean,
+      required: false,
+      default: false,
+      validator: (value) => {
+        return typeof value === 'boolean';
+      },
+    },
+  },
   data() {
     return {
-      friend: {
-        id: '125',
-        name: 'alex',
-        phone: '2345',
-        mail: 'alex@localhost.ru',
-      },
-      isVisibleDetail: false,
+      isVisibleDetail: this.isVisibleProps,
     };
   },
   methods: {
     toggleVisibleDetail() {
       this.isVisibleDetail = !this.isVisibleDetail;
+    },
+    toggleFavorite() {
+      this.$emit('random-name', this.id);
     },
   },
 };

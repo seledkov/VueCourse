@@ -3,6 +3,7 @@
     <h2>{{ friend.name }} {{ friend.isFavorite ? '&#9733;' : '' }}</h2>
     <button @click="toggleVisibleDetail">show/hide detail {{ id }}</button>
     <button @click="toggleFavorite">Add Favorite</button>
+    <button @click="$emit('delete', id)">Delete</button>
     <ul v-if="isVisibleDetail">
       <li><strong>Phone:</strong>{{ friend.phone }}</li>
       <li><strong>Email:</strong>{{ friend.email }}</li>
@@ -32,7 +33,7 @@ export default {
       },
     },
   },
-  emits: ['random-name'],
+  emits: ['random-name', 'delete'],
   // emits: {
   //   'random-name': function (id) {
   //     if (id) {
@@ -55,6 +56,9 @@ export default {
     toggleFavorite() {
       this.$emit('random-name', this.id);
     },
+    // deleteContact() {
+    //   console.log(this.id);
+    // },
   },
 };
 </script>

@@ -12,6 +12,7 @@
         :isVisibleProps="item.isVisibleDetail"
         :key="item.id"
         @random-name="toggleFavorite"
+        @delete="deleteContact"
       />
     </ul>
   </section>
@@ -46,7 +47,7 @@ export default {
   },
   methods: {
     toggleFavorite(friendId) {
-      const foundFriend = this.friends.find((item) => item.id === friendId);
+      const foundFriend = this.friends.find((item) => item.id !== friendId);
       foundFriend.isFavorite = !foundFriend.isFavorite;
       alert(friendId);
     },
@@ -55,11 +56,14 @@ export default {
         name: enteredFrinedData.enteredName,
         phone: enteredFrinedData.enteredPhone,
         email: enteredFrinedData.enteredMail,
-        id: enteredFrinedData.enteredName,
+        id: new Date().toString(),
         isFavorite: false,
         isVisibleDetail: false,
       });
       console.log('add friend', enteredFrinedData);
+    },
+    deleteContact(id) {
+      this.friends = this.friends.filter((item) => item.id !== id);
     },
   },
 };

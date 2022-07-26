@@ -30,13 +30,27 @@ const router = createRouter({
     { path: '/:notFound(.*)', component: NotFound },
   ],
   linkActiveClass: 'active',
-  scrollBehavior(to, from, savePosition) {
+  scrollBehavior(_to, _from, savePosition) {
     // call whenever page changes
     if (savePosition) {
       return savePosition;
     }
     return { left: 0, top: 0 };
   },
+});
+
+//  call whenever page changes, next - foo which we have to call to either confirm or cansel this navigation action
+router.beforeEach((to, from, next) => {
+  console.log(to, from, next);
+  // next(); // == next(true)
+  // next(false);
+
+  // if (to.path === '/teams/t3') {
+  //   next();
+  // } else {
+  //   next('/teams/t3');
+  // }
+  next();
 });
 
 const app = createApp(App);

@@ -26,7 +26,14 @@ const router = createRouter({
         },
       ],
     }, // our-domain.com/teams => TeamsList
-    { path: '/users', components: { default: UsersList, footer: UsersFooter } },
+    {
+      path: '/users',
+      components: { default: UsersList, footer: UsersFooter },
+      beforeEnter(to, from, next) {
+        console.log('beforeenter', to, from);
+        next();
+      },
+    },
     { path: '/:notFound(.*)', component: NotFound },
   ],
   linkActiveClass: 'active',
@@ -41,7 +48,7 @@ const router = createRouter({
 
 //  call whenever page changes, next - foo which we have to call to either confirm or cansel this navigation action
 router.beforeEach((to, from, next) => {
-  console.log(to, from, next);
+  console.log('beforeeach', to, from, next);
   // next(); // == next(true)
   // next(false);
 
@@ -51,6 +58,10 @@ router.beforeEach((to, from, next) => {
   //   next('/teams/t3');
   // }
   next();
+});
+
+router.afterEach((to, from) => {
+  // sending analytics data / maybe log users paths
 });
 
 const app = createApp(App);

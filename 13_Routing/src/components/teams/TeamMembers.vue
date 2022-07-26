@@ -51,6 +51,12 @@ export default {
       this.loadTeamMembers(newId);
     },
   },
+  // good watch alternative
+  // beforeRouteUpdate(to, from, next) {
+  //   console.log('update team member cmp');
+  //   this.loadTeamMembers(to.params.teamId);
+  //   next();
+  // },
 };
 </script>
 

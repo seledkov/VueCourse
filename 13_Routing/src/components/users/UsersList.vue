@@ -18,6 +18,11 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  data() {
+    return {
+      changesSaved: false,
+    };
+  },
   methods: {
     confirmInput() {
       // do something
@@ -27,6 +32,20 @@ export default {
   beforeRouteEnter(_to, _from, next) {
     console.log('before router enter');
     next();
+  },
+  beforeRouteLeave(_to, _from, next) {
+    // first call, before other route guards
+    console.log('before route leave');
+    if (this.changesSaved) {
+      next();
+    } else {
+      const userWantsToLeave = confirm('you unsave change!');
+      /// user want save or not changed, before leave component / page
+      next(userWantsToLeave);
+    }
+  },
+  unmounted() {
+    console.log('unmounted');
   },
 };
 </script>
